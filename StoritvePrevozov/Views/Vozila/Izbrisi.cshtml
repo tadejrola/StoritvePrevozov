@@ -1,0 +1,56 @@
+﻿@model P8_StoritvePrevozovREST.Classes.Vozilo
+@{
+    ViewBag.Title = "Izbrisi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h3>Prosim potrdite, če želite izbrisati izbrano vozilo.</h3>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.IDVozilo)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Kapaciteta, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Kapaciteta, new
+                { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.Kapaciteta)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Model, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Model, new
+                { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.Model)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipVozila, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TipVozila, new
+                { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.TipVozila)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Znamka, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Znamka, new
+                { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.Znamka)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Odstrani" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

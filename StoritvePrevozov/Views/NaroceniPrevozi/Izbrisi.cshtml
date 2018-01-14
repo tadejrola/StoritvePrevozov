@@ -1,0 +1,80 @@
+﻿@model P8_StoritvePrevozovREST.Classes.NarocenPrevoz
+@{
+    ViewBag.Title = "Izbrisi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h3>Prosim potrdite, če želite izbrisati izbrano naročilo.</h3>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.IDNarocenPrevoz)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SteviloLjudi, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SteviloLjudi, new
+           { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.SteviloLjudi)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZacetnaLokacija, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ZacetnaLokacija, new
+           { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.ZacetnaLokacija)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.KoncnaLokacija, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.KoncnaLokacija, new
+           { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.KoncnaLokacija)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DatumOd, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DatumOd, new
+           { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.DatumOd)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DatumDo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DatumDo, new
+           { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.DatumDo)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EMSOgosta, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.EMSOgosta, new
+           { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.EMSOgosta)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Izveden, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Izveden, new
+           { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.Izveden)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Odstrani" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

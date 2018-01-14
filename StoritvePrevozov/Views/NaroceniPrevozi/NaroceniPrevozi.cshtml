@@ -1,5 +1,64 @@
-﻿@{
+﻿@model IEnumerable<P8_StoritvePrevozovREST.Classes.NarocenPrevoz>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <div class="row well">
+                <button class="btn btn-success btn-l right" data-title="Delete" data-toggle="modal" data-target="#delete" onclick="location.href='@Url.Action("NovoNarocilo", "NaroceniPrevozi")';return false;">Dodaj novo naročilo
+                    <span class="glyphicon glyphicon-trash">
+                    </span>
+                </button>
+            </div>
+            <h2>Seznam naročil</h2>
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th><input type="checkbox" id="checkall" /></th>
+                    <th>ID naročila</th>
+                    <th>Stevilo ljudi</th>
+                    <th>Zacetna lokacija</th>
+                    <th>Koncna lokacija</th>
+                    <th>Izveden</th>
+                    <th>Uredi</th>
+                    <th>Izbriši</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><input type="checkbox" class="checkthis" /></td>
+                                <td>@item.IDNarocenPrevoz</td>
+                                <td>@item.SteviloLjudi</td>
+                                <td>@item.ZacetnaLokacija</td>
+                                <td>@item.KoncnaLokacija</td>
+                                <td>@item.Izveden</td>
+                                <td>
+                                    <p data-placement="top" data-toggle="tooltip" title="Edit">
+                                        <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" onclick="location.href='@Url.Action("Uredi", "NaroceniPrevozi", new { id = item.IDNarocenPrevoz })';return false;">
+
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                        <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" onclick="location.href='@Url.Action("Izbrisi", "NaroceniPrevozi", new { id = item.IDNarocenPrevoz })';return false;">
+                                            <span class="glyphicon glyphicon-trash">
+                                            </span>
+                                        </button>
+                                    </p>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
