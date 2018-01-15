@@ -58,6 +58,7 @@ namespace StoritvePrevozov.Controllers
         public ActionResult Izbrisi(int id)
         {
             var narocilo = pridobiNarocenePrevoze().Where(x => x.IDNarocenPrevoz == id).First();
+            
             return View(narocilo);
         }
 

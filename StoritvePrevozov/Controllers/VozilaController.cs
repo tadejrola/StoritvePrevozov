@@ -23,6 +23,28 @@ namespace StoritvePrevozov.Controllers
             var vozilo = pridobiSeznamVozil().Where(x => x.IDVozilo == id).First(); ;
             return View(vozilo);
         }
+        public ActionResult NovoVozilo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NovoVozilo([Bind(Include = "IDVozilo,Znamka,Model,TipVozila,Kapaciteta")] Vozilo vozilo)
+        {
+            dodajNovoVozilo(vozilo);
+            return RedirectToAction("Vozila");
+        }
+
+        private void dodajNovoVozilo(Vozilo vozilo)
+        {
+            var client = new RestClient("http://soa.informatika.uni-mb.si/P8_StoritvePrevozov/v1/P8_StoritevPrevozovRest.svc");
+            var request = new RestRequest("/PostVozilo", Method.POST);
+            string json = JsonConvert.SerializeObject(vozilo, new JsonSerializerSettings() { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat });
+            request.AddParameter("application/json", json, ParameterType.RequestBody);
+            var response = client.Execute(request);
+            var content = response.Content;
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

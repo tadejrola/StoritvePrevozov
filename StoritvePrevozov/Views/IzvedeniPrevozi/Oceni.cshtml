@@ -1,0 +1,99 @@
+﻿@model P8_StoritvePrevozovREST.Classes.IzvedenPrevoz
+@{
+    ViewBag.Title = "Uredi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Novo naročilo</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Oceni</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.IDIzvedenPrevoz)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DejanskoSteviloLjudi, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DejanskoSteviloLjudi, new
+                { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.DejanskoSteviloLjudi)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DejanskaZacetnaLokacija, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DejanskaZacetnaLokacija, new
+                { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.DejanskaZacetnaLokacija)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DejanskaKoncnaLokacija, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DejanskaKoncnaLokacija, new
+                { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.DejanskaKoncnaLokacija)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DejanskiDatumOd, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.DejanskiDatumOd, new
+                    { disabled = "disabled", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.DejanskiDatumOd)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DejanskiDatumDo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.DejanskiDatumDo, new
+                    { disabled = "disabled", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.DejanskiDatumDo)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DejanskiEMSOgosta, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.DejanskiEMSOgosta, new
+                    { disabled = "disabled", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.DejanskiEMSOgosta)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.IDIzvedenPrevoz, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.IDIzvedenPrevoz, new
+                    { disabled = "disabled", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.IDIzvedenPrevoz)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="ocena">Ocena:</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("ocena", new SelectList(new string[] { "1", "2", "3", "4", "5" }))
+                    @*<input class="text-box single-line" id="EMSOgosta" name="EMSOgosta" type="text" value="">
+                        <span class="field-validation-valid" data-valmsg-for="EMSOgosta" data-valmsg-replace="true"></span>*@
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="komentar">Komentar:</label>
+                <div class="col-md-10">
+                    @Html.TextArea("komentar")
+                    @*<input class="text-box single-line" id="EMSOgosta" name="EMSOgosta" type="text" value="">
+                        <span class="field-validation-valid" data-valmsg-for="EMSOgosta" data-valmsg-replace="true"></span>*@
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Oceni" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+

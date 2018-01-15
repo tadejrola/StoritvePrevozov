@@ -1,0 +1,54 @@
+﻿@model IEnumerable<P8_StoritvePrevozovREST.Classes.IzvedenPrevoz>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <h2>Seznam izvedenih prevozov</h2>
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th><input type="checkbox" id="checkall" /></th>
+                    <th>ID naročila</th>
+                    <th>Stevilo ljudi</th>
+                    <th>Zacetna lokacija</th>
+                    <th>Koncna lokacija</th>
+                    <th>Datum prevoza</th>
+                    <th>Komentar</th>
+                    <th>Ocena</th>
+                    <th>Oceni</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+        {
+                        <tr>
+                            <td><input type="checkbox" class="checkthis" /></td>
+                            <td>@item.IDNarocenPrevoz</td>
+                            <td>@item.DejanskoSteviloLjudi</td>
+                            <td>@item.DejanskaZacetnaLokacija</td>
+                            <td>@item.DejanskaKoncnaLokacija</td>
+                            <td>@item.DejanskiDatumOd</td>
+                            <td>@item.Komentar</td>
+                            <td>@item.OcenaPrevoza</td>
+                            <td>
+                                <p data-placement="top" data-toggle="tooltip" title="Finish">
+                                    <button class="btn btn-primary btn-xs" data-title="Finish" data-toggle="modal" data-target="#Finish" onclick="location.href='@Url.Action("Oceni", "IzvedeniPrevozi", new { id = item.IDIzvedenPrevoz })';return false;">
+                                        <span class="glyphicon glyphicon-pencil">
+                                        </span>
+                                    </button>
+                                </p>
+                            </td>
+                        </tr>
+}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

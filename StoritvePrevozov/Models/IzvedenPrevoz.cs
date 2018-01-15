@@ -9,7 +9,13 @@ namespace P8_StoritvePrevozovREST.Classes
     public class IzvedenPrevoz
     {
         public int IDIzvedenPrevoz { get; set; }
+        [Display(Name = "Datum začetka:")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-dd-MM}", ApplyFormatInEditMode = true)]
         public DateTime DejanskiDatumOd { get; set; }
+        [Display(Name = "Datum konca:")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-dd-MM}", ApplyFormatInEditMode = true)]
         public DateTime DejanskiDatumDo { get; set; }
         public int DejanskoSteviloLjudi { get; set; }
         public string DejanskiEMSOgosta { get; set; }

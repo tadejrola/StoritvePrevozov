@@ -187,10 +187,12 @@
     <Content Include="Views\Vozila\Izbrisi.cshtml" />
     <Content Include="Views\NaroceniPrevozi\NovoNarocilo.cshtml" />
     <Content Include="Views\NaroceniPrevozi\Koncaj.cshtml" />
+    <Content Include="Views\IzvedeniPrevozi\IzvedeniPrevozi.cshtml" />
+    <Content Include="Views\IzvedeniPrevozi\Oceni.cshtml" />
+    <Content Include="Views\Vozila\NovoVozilo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\IzvedeniPrevozi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
