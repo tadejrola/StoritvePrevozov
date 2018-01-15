@@ -14,7 +14,7 @@ namespace StoritvePrevozov.Controllers
         // GET: NaroceniPrevozi
         public ActionResult NaroceniPrevozi()
         {
-            var narocila=pridobiNarocenePrevoze();
+            var narocila = pridobiNarocenePrevoze().ToList().Where(x => x.Izveden == false).ToList(); ;
             return View(narocila);
         }
         public ActionResult NovoNarocilo()
@@ -36,6 +36,12 @@ namespace StoritvePrevozov.Controllers
             NarocenPrevoz narocilo = pridobiNarocenePrevoze().Where(x => x.IDNarocenPrevoz == id).First();
             return View(narocilo);
         }
+        public ActionResult Koncaj(int id)
+        {
+            NarocenPrevoz narocilo = pridobiNarocenePrevoze().Where(x => x.IDNarocenPrevoz == id).First();
+            return View(narocilo);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -63,6 +69,37 @@ namespace StoritvePrevozov.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult Koncaj(NarocenPrevoz narocenPrevoz)
+        {
+            NarocenPrevoz narocilo = pridobiNarocenePrevoze().Where(x => x.IDNarocenPrevoz==narocenPrevoz.IDNarocenPrevoz).First();
+            koncajNarocenPrevoz(narocilo);
+            return RedirectToAction("NaroceniPrevozi");
+
+        }
+
+        private void koncajNarocenPrevoz(NarocenPrevoz narocenPrevoz)
+        {
+            narocenPrevoz.Izveden = true;
+            posodobiNarocenPrevoz(narocenPrevoz);
+            IzvedenPrevoz izvedenPrevoz = new IzvedenPrevoz();
+            izvedenPrevoz.DejanskaKoncnaLokacija = narocenPrevoz.KoncnaLokacija;
+            izvedenPrevoz.DejanskaZacetnaLokacija = narocenPrevoz.ZacetnaLokacija;
+            izvedenPrevoz.DejanskiDatumDo = narocenPrevoz.DatumDo;
+            izvedenPrevoz.DejanskiDatumOd = narocenPrevoz.DatumOd;
+            izvedenPrevoz.DejanskiEMSOgosta = narocenPrevoz.EMSOgosta;
+            izvedenPrevoz.DejanskoSteviloLjudi = narocenPrevoz.SteviloLjudi;
+            izvedenPrevoz.IDNarocenPrevoz = narocenPrevoz.IDNarocenPrevoz;
+            
+            var client = new RestClient("http://soa.informatika.uni-mb.si/P8_StoritvePrevozov/v1/P8_StoritevPrevozovRest.svc");
+            var request = new RestRequest("/PostIzvedenPrevoz", Method.POST);
+            string json = JsonConvert.SerializeObject(izvedenPrevoz, new JsonSerializerSettings() { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat });
+            request.AddParameter("application/json", json, ParameterType.RequestBody);
+            var response = client.Execute(request);
+            var content = response.Content;
+            
+        }
+
         private void izbrisiNarocenPrevoz(NarocenPrevoz narocenPrevoz)
         {
             var client = new RestClient("http://soa.informatika.uni-mb.si/P8_StoritvePrevozov/v1/P8_StoritevPrevozovRest.svc");
@@ -83,6 +120,8 @@ namespace StoritvePrevozov.Controllers
             var response = client.Execute(request);
             var content = response.Content;
             List<NarocenPrevoz> seznamNarocil=JsonConvert.DeserializeObject<List<NarocenPrevoz>>(content);
+            if (seznamNarocil == null)
+                return new List<NarocenPrevoz>();
             return seznamNarocil;
         }
         private void dodajNarocenPrevoz(NarocenPrevoz narocenPrevoz, string tipVozila)

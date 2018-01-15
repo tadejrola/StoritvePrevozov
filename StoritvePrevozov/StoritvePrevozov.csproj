@@ -142,6 +142,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DomovController.cs" />
+    <Compile Include="Controllers\IzvedeniPrevoziController.cs" />
     <Compile Include="Controllers\NaroceniPrevoziController.cs" />
     <Compile Include="Controllers\VozilaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,9 +186,11 @@
     <Content Include="Views\NaroceniPrevozi\Izbrisi.cshtml" />
     <Content Include="Views\Vozila\Izbrisi.cshtml" />
     <Content Include="Views\NaroceniPrevozi\NovoNarocilo.cshtml" />
+    <Content Include="Views\NaroceniPrevozi\Koncaj.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\IzvedeniPrevozi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
