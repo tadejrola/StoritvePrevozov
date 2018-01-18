@@ -38,7 +38,7 @@
                             <td>@item.SteviloLjudi</td>
                             <td>@item.ZacetnaLokacija</td>
                             <td>@item.KoncnaLokacija</td>
-                            <td>@item.Izveden</td>
+                            <td>@(item.Izveden ? "Da" : "Ne")</td>
                             <td>
                                 <p data-placement="top" data-toggle="tooltip" title="Edit">
                                     <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" onclick="location.href='@Url.Action("Uredi", "NaroceniPrevozi", new { id = item.IDNarocenPrevoz })';return false;">
